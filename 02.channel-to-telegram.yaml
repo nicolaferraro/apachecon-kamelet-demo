@@ -1,0 +1,25 @@
+apiVersion: camel.apache.org/v1alpha1
+kind: KameletBinding
+metadata:
+  name: channel-to-telegram
+spec:
+  source:
+    ref:
+      apiVersion: messaging.knative.dev/v1
+      kind: Channel
+      name: messages
+  steps:
+  - ref:
+      apiVersion: camel.apache.org/v1alpha1
+      kind: Kamelet
+      name: extract-field-action
+    properties:
+      field: text
+  sink:
+    ref:
+      apiVersion: camel.apache.org/v1alpha1
+      kind: Kamelet
+      name: telegram-sink
+    properties:
+      authorizationToken: <from-bot-father>
+      chatId: "<identifier-of-the-chat-with-your-bot-on-your-smartphone>"

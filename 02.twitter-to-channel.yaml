@@ -1,0 +1,21 @@
+apiVersion: camel.apache.org/v1alpha1
+kind: KameletBinding
+metadata:
+  name: twitter-to-channel
+spec:
+  source:
+    properties:
+      accessToken: <from-dev-portal>
+      accessTokenSecret: <from-dev-portal>
+      apiKey: <from-dev-portal>
+      apiKeySecret: <from-dev-portal>
+      keywords: Camel
+    ref:
+      apiVersion: camel.apache.org/v1alpha1
+      kind: Kamelet
+      name: twitter-search-source
+  sink:
+    ref:
+      apiVersion: messaging.knative.dev/v1
+      kind: Channel
+      name: messages
