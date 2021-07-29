@@ -13,3 +13,5 @@ spec:
       apiVersion: camel.apache.org/v1alpha1
       kind: Kamelet
       name: log-sink
+    properties:
+      showStreams: "true"

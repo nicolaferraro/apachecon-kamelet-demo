@@ -23,6 +23,13 @@ spec:
         default: false
         x-descriptors:
         - 'urn:alm:descriptor:com.tectonic.ui:checkbox'
+      showStreams:
+        title: Show Streams
+        description: Show the stream bodies (they may not be available in following steps)
+        type: boolean
+        default: false
+        x-descriptors:
+        - 'urn:alm:descriptor:com.tectonic.ui:checkbox'
   dependencies:
   - "camel:kamelet"
   - "camel:log"
@@ -30,8 +37,8 @@ spec:
     from:
       uri: "kamelet:source"
       steps:
-      - convert-body-to: java.lang.String
       - to:
           uri: "log:info"
           parameters:
             showHeaders: "{{?showHeaders}}"
+            showStreams: "{{?showStreams}}"
